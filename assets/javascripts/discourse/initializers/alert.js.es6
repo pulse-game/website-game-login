@@ -1,6 +1,6 @@
 export default {
   name: 'alert',
   initialize() {
-    alert('alert boxes are annoying!');
+    console.log("This is from the plugin");
   }
 };
