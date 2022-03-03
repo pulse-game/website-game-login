@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-# name: discourse-plugin-name
-# about: TODO
+# name: basic-plugin
+# about: A test plugin for our website
 # version: 0.0.1
-# authors: Discourse
-# url: TODO
+# authors: Pulse team
+# url: https://github.com/pulse-game/website-plugin
 # required_version: 2.7.0
 # transpile_js: true
 
