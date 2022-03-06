@@ -1,4 +1,4 @@
 plugins:
-  plugin_name_enabled:
+  game_login_enabled:
     default: true
     client: true
