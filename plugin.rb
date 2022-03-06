@@ -2,7 +2,7 @@
 
 # name: game-login
 # about: Plugin to authenticate a user by providing username+password to a API endpoint. (to login to the game)
-# version: 0.0.1
+# version: 0.0.2
 # authors: Pulse team
 # url: https://github.com/pulse-game/website-plugin
 # required_version: 2.7.0
