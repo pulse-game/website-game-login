@@ -11,4 +11,10 @@
 enabled_site_setting :game_login_enabled
 
 after_initialize do
+	load File.expand_path('../app/controllers/game_login_controller.rb', __FILE__)
+	
+	Discourse::Application.routes.append do
+		# Map the path `/notebook` to `GameLoginController`’s `index` method
+		get '/game_login' => 'game_login#create'
+	end
 end
