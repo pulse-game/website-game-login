@@ -4,6 +4,11 @@ class GameLoginController < ApplicationController
 	def create
 		params.require(:login)
 		params.require(:password)
+		params.require(:api_password)
+		
+		if api_password != server_api_password  # Require password to call this API.
+			return render json:{error: "Invalid server-api-password"}
+		end
 		
 		return invalid_credentials if params[:password].length > User.max_password_length
 		
