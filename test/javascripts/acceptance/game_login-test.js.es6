@@ -8,6 +8,6 @@ test("Game Login Works", assert => {
 		//var j = JSON.parse(document.body.innerText);
 		//assert.ok(j, "Parsed JSON ok!");
 		// assert.ok(j.error, "Did not find any errors"); // Can not check this because we need a default account then.
-		assert.ok(exists('body'), "Got response from game_login api endpoint.");
+		assert.ok(document.body.innerText.length > 0, "Got response from game_login api endpoint.");
 	});
 });
