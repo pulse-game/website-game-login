@@ -1,5 +1,5 @@
 import { acceptance } from "helpers/qunit-helpers";
-acceptance("Purple Tentacle", {});
+acceptance("Game Login", {});
 
 test("Game Login Works", assert => {
 	visit("/game_login?login=test&password=test&api_password=" + this.siteSettings.server_api_password);
