@@ -10,6 +10,7 @@ class GameUserHasSecondAuthController < ApplicationController
 		end
 		
 		user = User.find_by_username_or_email(normalized_login_param)
+		# rate_limit_second_factor!(user)  # Un-comment this if we call this from client.
 		
 		if user.present?
 			# render json: {success: true, method: user.totps.method}

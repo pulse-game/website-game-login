@@ -3,5 +3,8 @@ plugins:
     default: true
     client: true
   server_api_password:
-    default: "t8VzozhdsnjB9RTG1Nqg"
+    default: t8VzozhdsnjB9RTG1Nqg
+    type: enum
+    choices:
+        - t8VzozhdsnjB9RTG1Nqg
     client: false
