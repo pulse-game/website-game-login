@@ -12,6 +12,7 @@ enabled_site_setting :game_login_enabled
 
 after_initialize do
 	load File.expand_path('../app/controllers/game_login_controller.rb', __FILE__)
+	load File.expand_path('../app/controllers/game_user_has_second_auth_controller.rb', __FILE__)
 	
 	Discourse::Application.routes.append do
 		# Map the path `/notebook` to `GameLoginController`’s `create` method
