@@ -39,9 +39,8 @@ class GameLoginController < ApplicationController
 		if !authenticate_second_factor(user)
 			return render(json: @second_factor_failure_payload)
 		end
-		########### I AM here
-		# (user.active && user.email_confirmed?) ? login(user) : not_activated(user)
-		render_serialized(user, UserSerializer)
+		
+		render_serialized(user, UserWithCountSerializer) # UserSerializer
 		#return render json: {test: 1}
 	end
 	
