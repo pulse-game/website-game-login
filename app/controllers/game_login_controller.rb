@@ -6,7 +6,7 @@ class GameLoginController < ApplicationController
 		params.require(:password)
 		params.require(:api_password)
 		
-		if api_password != server_api_password  # Require password to call this API.
+		if params[:api_password] != server_api_password  # Require password to call this API.
 			return render json:{error: "Invalid server-api-password"}
 		end
 		
