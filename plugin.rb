@@ -14,7 +14,7 @@ after_initialize do
 	load File.expand_path('../app/controllers/game_login_controller.rb', __FILE__)
 	
 	Discourse::Application.routes.append do
-		# Map the path `/notebook` to `GameLoginController`’s `index` method
-		get '/game_login' => 'game_login#index'
+		# Map the path `/notebook` to `GameLoginController`’s `create` method
+		get '/game_login' => 'game_login#create'
 	end
 end
