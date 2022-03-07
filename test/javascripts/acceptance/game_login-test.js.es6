@@ -2,7 +2,7 @@ import { acceptance } from "helpers/qunit-helpers";
 acceptance("Game Login", {});
 
 test("Game Login Works", assert => {
-	visit("/game_login?login=test&password=test&api_password=" + this.siteSettings.server_api_password);
+	visit("/game_login?login=test&password=test&api_password=t8VzozhdsnjB9RTG1Nqg");
 	
 	andThen(() => {
 		var j = JSON.parse(document.body.innerText);

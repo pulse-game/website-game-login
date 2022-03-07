@@ -2,7 +2,7 @@ import { acceptance } from "helpers/qunit-helpers";
 acceptance("Game Get 2FA", {});
 
 test("Game Get 2FA Works", assert => {
-	visit("/game_has_2fa?login=system&api_password=" + this.siteSettings.server_api_password);
+	visit("/game_has_2fa?login=system&api_password=t8VzozhdsnjB9RTG1Nqg");
 	
 	andThen(() => {
 		var j = JSON.parse(document.body.innerText);
