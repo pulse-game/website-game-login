@@ -6,6 +6,10 @@ class GameLoginController < ApplicationController
 		params.require(:password)
 		params.require(:api_password)
 		
+		if !SiteSetting.game_login_enabled
+			return render json:{error: "Server login disabled by admins on website."}
+		end
+		
 		if params[:api_password] != SiteSetting.server_api_password  # Require password to call this API.
 			return render json:{error: "Invalid server-api-password"}
 		end
