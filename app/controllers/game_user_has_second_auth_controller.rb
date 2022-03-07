@@ -1,4 +1,4 @@
-class GameHas2faController < ApplicationController
+class GameUserHasSecondAuthController < ApplicationController
 	skip_before_action :preload_json, :check_xhr
 	
 	def index

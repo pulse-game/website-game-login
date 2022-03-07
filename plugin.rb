@@ -16,6 +16,6 @@ after_initialize do
 	Discourse::Application.routes.append do
 		# Map the path `/notebook` to `GameLoginController`’s `create` method
 		get '/game_login' => 'game_login#create'
-		get '/game_has_2fa' => 'game_has_2fa#index'
+		get '/game_has_2fa' => 'game_user_has_second_auth#index'
 	end
 end
