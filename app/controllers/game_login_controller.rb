@@ -40,7 +40,7 @@ class GameLoginController < ApplicationController
 			return render(json: @second_factor_failure_payload)
 		end
 		
-		render_serialized(user, UserSummarySerializer) # UserSerializer
+		render_serialized(user, BasicUserSerializer) # UserSerializer
 		#return render json: {test: 1}
 	end
 	
