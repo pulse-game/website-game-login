@@ -12,7 +12,9 @@ class GameUserHasSecondAuthController < ApplicationController
 		user = User.find_by_username_or_email(normalized_login_param)
 		
 		if user.present?
-			render json: {success: true, totps: user.totps}
+			# render json: {success: true, method: user.totps.method}
+			render_serialized(user.totps, SecondFactorSerializer)
+			return
 		else
 			render json: {error: "Can not find user with that email/username"}
 			return
