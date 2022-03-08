@@ -19,7 +19,6 @@ class GameUserHasSecondAuthController < ApplicationController
     # rate_limit_second_factor!(user)  # Un-comment this if we call this from client.
 
     if user.present?
-      # render json: {success: true, method: user.totps.method}
       render_serialized(user.totps, SecondFactorSerializer)
     else
       render json: { error: "Can not find user with that email/username" }

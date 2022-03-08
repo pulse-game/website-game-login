@@ -52,7 +52,6 @@ class GameLoginController < ApplicationController
     end
 
     render_serialized(user, BasicUserSerializer) # UserSerializer
-    #return render json: {test: 1}
   end
 
   def login_not_approved_for?(user)
