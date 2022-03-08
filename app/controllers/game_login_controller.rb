@@ -69,11 +69,11 @@ class GameLoginController < ApplicationController
   end
 
   def invalid_credentials
-    render json: { error: "Invalid Credentials (Username or password)" }
+    render json: { error: I18n.t("login.incorrect_username_email_or_password") }
   end
 
   def login_not_approved
-    { error: "Login not approved for this user" }
+    { error: I18n.t("login.not_approved") }
   end
 
   def login_error_check(user)
