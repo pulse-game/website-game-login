@@ -4,12 +4,8 @@
 The plugin adds the following API endpoints:
 
 
-### GET ```/game_has_2fa```
-First you call this endpoint to check if the user has 2fa enabled.
-
-#### **Required Variables:**
-- **api_password**=t8VzozhdsnjB9RTG1Nqg (to disable un-authorized persons to call this api endpoint, possible to change in admin/code)
-- **login**=EMAIL_OR_USERNAME
+### GET ```/game_has_2fa?login=EMAIL_OR_USERNAME```
+First you call this endpoint (on game client) to check if the user has 2fa enabled.
 
 
 ### GET ```/game_login```
