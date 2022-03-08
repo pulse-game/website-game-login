@@ -23,7 +23,7 @@ class GameUserHasSecondAuthController < ApplicationController
       
       render_serialized(user.totps, SecondFactorSerializer)
     else
-      render json: { error: "Can not find user with that email/username" }
+      invalid_credentials
     end
   end
 
@@ -35,5 +35,9 @@ class GameUserHasSecondAuthController < ApplicationController
     else
       nil
     end
+  end
+  
+  def invalid_credentials
+    render json: { error: I18n.t("login.incorrect_username_email_or_password") }
   end
 end
