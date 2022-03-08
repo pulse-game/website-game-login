@@ -22,4 +22,4 @@ Last you call this endpoint to authenticate the user.
 
 
 
-For more information, please see: **forum.pulse-game.com**
+For more information, please see: **https://forum.pulse-game.com/t/authenticate-user-in-game/21**
