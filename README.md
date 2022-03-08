@@ -12,7 +12,7 @@ First you call this endpoint (on game client) to check if the user has 2fa enabl
 Last you call this endpoint to authenticate the user.
 
 #### **Required Variables:**
-- ```api_password=FOUND_ON_ADMIN_PAGE``` (to disable un-authorized persons to call this api endpoint, possible to change in admin/code)
+- ```api_password=FOUND_ON_ADMIN_PLUGIN_SETTINGS_PAGE``` (to disable un-authorized persons to call this api endpoint, possible to change in admin/code)
 - ```login=EMAIL_OR_USERNAME```
 - ```password=PASSWORD```
 
