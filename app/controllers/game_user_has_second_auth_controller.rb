@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GameUserHasSecondAuthController < ApplicationController
   skip_before_action :preload_json, :check_xhr
 
@@ -19,10 +21,8 @@ class GameUserHasSecondAuthController < ApplicationController
     if user.present?
       # render json: {success: true, method: user.totps.method}
       render_serialized(user.totps, SecondFactorSerializer)
-      return
     else
       render json: { error: "Can not find user with that email/username" }
-      return
     end
   end
 

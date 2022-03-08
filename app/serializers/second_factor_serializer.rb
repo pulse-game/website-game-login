@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SecondFactorSerializer < ApplicationSerializer
   attributes 	:id,
               :user_id,
