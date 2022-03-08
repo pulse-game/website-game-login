@@ -6,11 +6,11 @@ class GameUserHasSecondAuthController < ApplicationController
     params.require(:api_password)
 
     if !SiteSetting.game_login_enabled
-      return render json:{error: "Server login disabled by admins on website."}
+      return render json: { error: "Server login disabled by admins on website." }
     end
 
     if params[:api_password] != SiteSetting.server_api_password  # Require password to call this API.
-      return render json:{error: "Invalid server-api-password."}
+      return render json: { error: "Invalid server-api-password." }
     end
 
     user = User.find_by_username_or_email(normalized_login_param)
@@ -21,7 +21,7 @@ class GameUserHasSecondAuthController < ApplicationController
       render_serialized(user.totps, SecondFactorSerializer)
       return
     else
-      render json: {error: "Can not find user with that email/username"}
+      render json: { error: "Can not find user with that email/username" }
       return
     end
   end
