@@ -7,7 +7,7 @@ class GameLoginController < ApplicationController
     params.require(:login)
     params.require(:password)
     params.require(:api_password)
-
+    
     if !SiteSetting.game_login_enabled
       return render json: { error: "Server login disabled by admins on website." }
     end
@@ -51,7 +51,7 @@ class GameLoginController < ApplicationController
       return render(json: @second_factor_failure_payload)
     end
 
-    render_serialized(user, BasicUserSerializer) # UserSerializer
+    render_serialized(user, GameLoginUserSerializer) # UserSerializer
   end
 
   def login_not_approved_for?(user)

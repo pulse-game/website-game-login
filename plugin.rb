@@ -10,14 +10,19 @@
 
 enabled_site_setting :game_login_enabled
 
+load File.expand_path('../app/game_login_keys.rb', __FILE__)
+
 after_initialize do
   load File.expand_path('../app/controllers/game_login_controller.rb', __FILE__)
+  load File.expand_path('../app/serializers/game_login_user_serializer.rb', __FILE__)
   load File.expand_path('../app/controllers/game_user_has_second_auth_controller.rb', __FILE__)
   load File.expand_path('../app/serializers/second_factor_serializer.rb', __FILE__)
+  load File.expand_path('../app/controllers/game_valid_login_key_controller.rb', __FILE__)
 
   Discourse::Application.routes.append do
     # Map the path `/notebook` to `GameLoginController`’s `create` method
     get '/game_login' => 'game_login#create'
     get '/game_has_2fa' => 'game_user_has_second_auth#index'
+    get '/game_valid_login_key' => 'game_valid_login_key#index'
   end
 end
