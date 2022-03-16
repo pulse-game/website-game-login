@@ -8,23 +8,17 @@ class GameLoginTokenController < ApplicationController
     params.require(:login_token)
     params.require(:user_id)
     
-    if !GameLoginTokens.valid_login_token?(params[:user_id], params[:login_token])
-      return render json: {error: "Invalid login token!"}
+    # Check if find user with that user_id
+    user = User.find_by_id(params[:user_id])
+    if not user
+      return render json: {error: "Invalid user_id: #{params[:user_id]}"}
     end
-    
-    return render json: {success: true}
-  end
-  
-  def list  # List all active login tokens for user
-    return render json: GameLoginTokens.get_login_tokens(current_user.id)
-  end
-  
-  def destroy  # Remove 1 specific login_token
-    params.require(:login_token)
-    return render json: {success: GameLoginTokens.remove_login_token(current_user.id, params[:login_token])}
-  end
-  
-  def destroy_all  # Removes all login tokens from user
-    return render json: {success: GameLoginTokens.remove_all_login_tokens(current_user.id)}
+    # Check if that user have user_auth_tokens
+    user.user_auth_tokens.each do |n|
+      if n[:auth_token] == params[:login_token]
+        return render json: {success: true}
+      end
+    end
+    return render json: {error: "Invalid login_token: #{params[:login_token]}"}
   end
 end

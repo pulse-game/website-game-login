@@ -5,7 +5,10 @@ class GameLoginUserSerializer < ApplicationSerializer
               :username,
               :name,
               :avatar_template,
-              :login_token
+              :admin,
+              :moderator,
+              :email,
+              :login_auth_token
   def name
     Hash === user ? user[:name] : user.try(:name)
   end
@@ -50,8 +53,13 @@ class GameLoginUserSerializer < ApplicationSerializer
     @tag_user_notification_levels ||= TagUser.notification_levels_for(user)
   end
   
-  def login_token
-    GameLoginTokens.add_login_token(user[:id])
+  def login_auth_token
+    last_token = {id:0}
+    object.user_auth_tokens.each do |n|
+      if n[:id] > last_token[:id]
+        last_token = n
+      end
+    end
+    last_token
   end
-  
 end

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+ACTIVATE_USER_KEY = "activate_user"
+
 class GameLoginController < ApplicationController
   skip_before_action :preload_json, :check_xhr
 
@@ -51,7 +53,8 @@ class GameLoginController < ApplicationController
       return render(json: @second_factor_failure_payload)
     end
 
-    render_serialized(user, GameLoginUserSerializer) # UserSerializer
+    # render_serialized(user, GameLoginUserSerializer) # UserSerializer
+    (user.active && user.email_confirmed?) ? login(user) : not_activated(user)
   end
 
   def login_not_approved_for?(user)
@@ -114,5 +117,27 @@ class GameLoginController < ApplicationController
       return false
     end
     true
+  end
+  
+  def not_activated(user)
+    session[ACTIVATE_USER_KEY] = user.id
+    render json: {
+      error: I18n.t("login.not_activated"),
+      reason: 'not_activated',
+      sent_to_email: user.find_email || user.email,
+      current_email: user.email
+    }
+  end
+  
+  def login(user)
+    session.delete(ACTIVATE_USER_KEY)
+    user.update_timezone_if_missing(params[:timezone])
+    log_on_user(user)
+
+    if payload = cookies.delete(:sso_payload)
+      sso_provider(payload)
+    else
+      render_serialized(user, GameLoginUserSerializer)  # UserSerializer
+    end
   end
 end

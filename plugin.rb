@@ -10,8 +10,6 @@
 
 enabled_site_setting :game_login_enabled
 
-load File.expand_path('../app/game_login_tokens.rb', __FILE__)
-
 after_initialize do
   load File.expand_path('../app/controllers/game_login_controller.rb', __FILE__)
   load File.expand_path('../app/serializers/game_login_user_serializer.rb', __FILE__)
@@ -24,7 +22,5 @@ after_initialize do
     get '/game_login' => 'game_login#create'
     get '/game_has_2fa' => 'game_user_has_second_auth#index'
     get '/game_valid_login_token' => 'game_login_token#valid'
-    get '/game_login_tokens' => 'game_login_token#list'
-    get '/game_remove_all_login_tokens' => 'game_login_token#destroy_all'
   end
 end
