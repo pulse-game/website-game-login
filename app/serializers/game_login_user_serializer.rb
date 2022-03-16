@@ -5,7 +5,7 @@ class GameLoginUserSerializer < ApplicationSerializer
               :username,
               :name,
               :avatar_template,
-              :login_key
+              :login_token
   def name
     Hash === user ? user[:name] : user.try(:name)
   end
@@ -50,8 +50,8 @@ class GameLoginUserSerializer < ApplicationSerializer
     @tag_user_notification_levels ||= TagUser.notification_levels_for(user)
   end
   
-  def login_key
-    GameLoginKeys.add_login_key(user[:id])
+  def login_token
+    GameLoginTokens.add_login_token(user[:id])
   end
   
 end
