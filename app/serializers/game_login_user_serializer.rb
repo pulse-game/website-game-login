@@ -51,8 +51,7 @@ class GameLoginUserSerializer < ApplicationSerializer
   end
   
   def login_key
-    GameLoginKeys.add_login_key()
+    GameLoginKeys.add_login_key(user[:id])
   end
-  
   
 end
