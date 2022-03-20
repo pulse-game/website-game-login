@@ -21,7 +21,7 @@ class GameUserHasSecondAuthController < ApplicationController
         return
       end
       
-      render_serialized(user.totps, SecondFactorSerializer)
+      return render_json_dump({auth_units: serialize_data(user.totps, SecondFactorSerializer)}) # render_serialized(user.totps[0], SecondFactorSerializer)
     else
       invalid_credentials
     end
@@ -39,5 +39,31 @@ class GameUserHasSecondAuthController < ApplicationController
   
   def invalid_credentials
     render json: { error: I18n.t("login.incorrect_username_email_or_password") }
+  end
+  
+  def serialize_data(obj, serializer, opts = nil)
+    # If it's an array, apply the serializer as an each_serializer to the elements
+    serializer_opts = { scope: guardian }.merge!(opts || {})
+    if obj.respond_to?(:to_ary)
+      serializer_opts[:each_serializer] = serializer
+      ActiveModel::ArraySerializer.new(obj.to_ary, serializer_opts).as_json
+    else
+      serializer.new(obj, serializer_opts).as_json
+    end
+  end
+  
+  def render_json_dump(obj, opts = nil)
+    opts ||= {}
+    if opts[:rest_serializer]
+      obj['__rest_serializer'] = "1"
+      opts.each do |k, v|
+        obj[k] = v if k.to_s.start_with?("refresh_")
+      end
+
+      obj['extras'] = opts[:extras] if opts[:extras]
+      obj['meta'] = opts[:meta] if opts[:meta]
+    end
+
+    render json: MultiJson.dump(obj), status: opts[:status] || 200
   end
 end
