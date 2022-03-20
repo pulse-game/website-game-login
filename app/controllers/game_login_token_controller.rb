@@ -16,7 +16,8 @@ class GameLoginTokenController < ApplicationController
     # Check if that user have user_auth_tokens
     user.user_auth_tokens.each do |n|
       if n[:auth_token] == params[:login_token]
-        return render json: {success: true}
+        return render_serialized(user, GameTokenLoginUserSerializer)
+        # return render json: {success: true}
       end
     end
     return render json: {error: "Invalid login_token: #{params[:login_token]}"}

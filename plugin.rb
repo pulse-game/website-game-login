@@ -11,11 +11,13 @@
 enabled_site_setting :game_login_enabled
 
 after_initialize do
+  load File.expand_path('../app/controllers/game_login_token_controller.rb', __FILE__)
+  load File.expand_path('../app/serializers/game_token_login_user_serializer.rb', __FILE__)
   load File.expand_path('../app/controllers/game_login_controller.rb', __FILE__)
   load File.expand_path('../app/serializers/game_login_user_serializer.rb', __FILE__)
   load File.expand_path('../app/controllers/game_user_has_second_auth_controller.rb', __FILE__)
   load File.expand_path('../app/serializers/second_factor_serializer.rb', __FILE__)
-  load File.expand_path('../app/controllers/game_login_token_controller.rb', __FILE__)
+
 
   Discourse::Application.routes.append do
     # Map the path `/notebook` to `GameLoginController`’s `create` method
