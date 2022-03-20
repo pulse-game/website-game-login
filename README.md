@@ -23,4 +23,4 @@ Last you call this endpoint to authenticate the user.
 ### GET ```/game_valid_login_token?login_token=GET_FROM_GAME_LOGIN=&user_id=USER_ID```
 You can call this endpoint with a valid auth-token to verify that the user is logged in, so the player dont need to login every time they connect.
 
-For more information, please see: **https://forum.pulse-game.com/t/authenticate-user-in-game/21**
+For more information, please see: **https://forum.pulse-game.com/t/authenticate-user-ingame/86**
